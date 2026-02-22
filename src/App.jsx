@@ -9,20 +9,20 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [candidate, setCandidate] = useState(null);
   const [repositoryUrl, setRepositoryUrl] = useState({});
+  const [message, setMessage] = useState(null);
 
   function setUrlRepo(jobId, value) {
     setRepositoryUrl((prev) => ({
       ...prev,
       [jobId]: value,
     }))
-    console.log(repositoryUrl)
   }
 
   async function handleSubmit(jobId) {
     const jobRepoUrl = repositoryUrl[jobId]
 
     if (!jobRepoUrl) {
-      alert("Por favor, ingresa tu repositorio Github")
+      setMessage("Por favor, ingresa tu repositorio Github")
       return
     }
 
@@ -47,10 +47,15 @@ function App() {
       )
 
       const data = await response.json()
-      console.log("Respuesta del POST:", data)
+
+      if (data.ok == true) {
+        setMessage("Aplicacion enviada con exito")
+      } else {
+        setMessage(`Error al enviar el formulario: ${data.error}`)
+      }
 
     } catch (error) {
-      console.error("Error:", error)
+      setMessage("Algo ocurrio, no se envio la aplicacion")
     }
   }
 
@@ -75,7 +80,11 @@ function App() {
     <div className="main-container">
       <CandidateInfo candidate={candidate} />
       <h3>Puestos disponibles para aplicar</h3>
-
+      {message && (
+        <div className="form-message">
+          {message}
+        </div>
+      )}
       {jobs.map((job) => (
         <JobItem
           key={job.id}
