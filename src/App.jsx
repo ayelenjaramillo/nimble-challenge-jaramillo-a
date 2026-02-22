@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import CandidateInfo from "./components/CandidateInfo"
-import JobItem from "./components/Job-item";
+import CandidateInfo from "./components/CandidateInfo.jsx"
+import JobItem from "./components/JobItem.jsx";
+import './app.css'
 
 const baseUrl = "https://botfilter-h5ddh6dye8exb7ha.centralus-01.azurewebsites.net";
 
@@ -71,9 +72,9 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div className="main-container">
       <CandidateInfo candidate={candidate} />
-      <h1>Puestos disponibles para aplicar</h1>
+      <h3>Puestos disponibles para aplicar</h3>
 
       {jobs.map((job) => (
         <JobItem

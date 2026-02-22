@@ -1,0 +1,14 @@
+body{
+    background: #2e1a47; 
+}
+.main-container{
+    background-color: #f4f4f4; 
+    border: 1px solid #2f1b48;
+    border-radius: 20px;
+    margin: 2% 30%;
+    padding: 2%;
+    color: black;
+    font-family: "Public Sans", sans-serif;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+ }
+ 
